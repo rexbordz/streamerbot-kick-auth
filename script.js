@@ -6,9 +6,10 @@ const sbPassword = urlParams.get("password");
 
 // Global variables
 let streamerbotConnected = false;
-let notifications = document.querySelector('.notifications');
+let actionFired = false;
 const actionId = "1af6350d-fef2-47a4-b596-1342a0e8135a";
 const code = urlParams.get("code");
+const oauthError = urlParams.get("error");
 
 
 // =============================
@@ -24,6 +25,11 @@ const sbClient = new StreamerbotClient({
       streamerbotConnected = true;
       console.log(`✅ Streamer.bot connected to ${sbAddress}:${sbPort}`)
       console.debug(data);   
+    }
+
+    if (!actionFired) {
+      actionFired = true;
+      handleKickRedirect();
     }
   },
 
@@ -61,7 +67,13 @@ function handleKickRedirect() {
   }
   if (!code) return;
   showState('pending');
-  sbClient.doAction(actionId, { code });
+
+  const args = 
+    {
+      code: code,
+      __source: "KickReauthPage",
+    }
+  sbClient.doAction(actionId, args);
 }
 
 // showState('error');
