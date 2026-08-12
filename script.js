@@ -29,9 +29,7 @@ const sbClient = new StreamerbotClient({
 
     if (!actionFired) {
       actionFired = true;
-      setTimeout(() => {
-        handleKickRedirect();
-      }, 3000); // 1.5s delay before calling
+      handleKickRedirect();
     }
   },
 
@@ -73,7 +71,7 @@ function handleKickRedirect() {
   const args = 
     {
       code: code,
-      __source: "KickReauthPage",
+      triggerSource: "KickReauthPage",
     }
   sbClient.doAction(actionId, args);
 }
