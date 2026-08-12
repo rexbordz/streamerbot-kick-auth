@@ -7,7 +7,7 @@ const sbPassword = urlParams.get("password");
 // Global variables
 let streamerbotConnected = false;
 let notifications = document.querySelector('.notifications');
-const actionId = "a4fde1af-7680-403d-9433-4d90685de740";
+const actionId = "1af6350d-fef2-47a4-b596-1342a0e8135a";
 const code = urlParams.get("code");
 
 
