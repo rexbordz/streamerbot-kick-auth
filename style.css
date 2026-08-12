@@ -1,0 +1,342 @@
+/* =========================================================
+   REXBORdz OAUTH THEME
+   Dark + Electric Blue
+   ========================================================= */
+
+:root {
+  /* Brand */
+  --brand-blue: #00b2f8;
+  --brand-blue-dark: #006fed;
+  --brand-blue-bright: #19bdff;
+
+  /* Background */
+  --page-bg: #0b0d10;
+  --card-bg: #14171b;
+  --card-bg-hover: #181c21;
+
+  /* Text */
+  --text-primary: #f5f7fa;
+  --text-secondary: #a9b1bc;
+  --text-muted: #737d89;
+
+  /* Borders */
+  --border: rgba(255, 255, 255, 0.08);
+  --border-blue: rgba(0, 178, 248, 0.35);
+
+  /* Glow */
+  --blue-glow: rgba(0, 178, 248, 0.15);
+}
+
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(0, 178, 248, 0.08),
+      transparent 35%
+    ),
+    var(--page-bg);
+
+  color: var(--text-primary);
+
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+
+/* =========================================================
+   MAIN OAUTH CONTAINER
+   ========================================================= */
+
+.oauth-page {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  padding: 2rem;
+}
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.oauth-logo {
+  margin-bottom: 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.oauth-logo img {
+  display: block;
+
+  width: 110px;
+  height: 110px;
+
+  object-fit: contain;
+
+  /* Subtle blue glow matching the logo */
+  filter:
+    drop-shadow(0 0 20px rgba(0, 178, 248, 0.15));
+
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
+}
+
+.oauth-logo img:hover {
+  transform: scale(1.03);
+
+  filter:
+    drop-shadow(0 0 28px rgba(0, 178, 248, 0.25));
+}
+
+
+/* =========================================================
+   STATE CONTAINER
+   ========================================================= */
+
+.oauth-state {
+  width: 100%;
+  max-width: 430px;
+}
+
+
+/* =========================================================
+   WEB AWESOME CARD
+   ========================================================= */
+
+.oauth-card {
+  display: block;
+
+  text-align: center;
+
+  padding: 2.5rem 2rem;
+
+  box-sizing: border-box;
+
+  /*
+    We intentionally give the card its own styling rather
+    than relying entirely on Web Awesome's default theme.
+  */
+
+  --wa-color-surface-raised: var(--card-bg);
+  --wa-color-neutral-0: var(--card-bg);
+
+  border: 1px solid var(--border);
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.025),
+      rgba(255, 255, 255, 0.005)
+    ),
+    var(--card-bg);
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(0, 178, 248, 0.02);
+
+  backdrop-filter: blur(12px);
+}
+
+
+/* =========================================================
+   ICON AREA
+   ========================================================= */
+
+.oauth-icon {
+  width: 72px;
+  height: 72px;
+
+  margin: 0 auto 1.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    rgba(0, 178, 248, 0.08);
+
+  border: 1px solid rgba(0, 178, 248, 0.18);
+
+  color: var(--brand-blue);
+
+  font-size: 2.25rem;
+
+  box-shadow:
+    0 0 30px rgba(0, 178, 248, 0.08);
+}
+
+
+/* =========================================================
+   PENDING
+   ========================================================= */
+
+#state-pending .oauth-icon {
+  border-color: rgba(0, 178, 248, 0.25);
+
+  background:
+    rgba(0, 178, 248, 0.07);
+}
+
+#state-pending wa-spinner {
+  color: var(--brand-blue);
+
+  /* Size */
+  font-size: 3rem;
+
+  /* Thickness */
+  --track-width: 5px;
+  --indicator-width: 5px;
+}
+
+
+/* =========================================================
+   SUCCESS
+   ========================================================= */
+
+.oauth-success-icon {
+  color: var(--brand-blue);
+
+  background:
+    rgba(0, 178, 248, 0.09);
+
+  border-color:
+    rgba(0, 178, 248, 0.28);
+
+  box-shadow:
+    0 0 35px rgba(0, 178, 248, 0.12);
+}
+
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.oauth-error-icon {
+  color: #ff647c;
+
+  background:
+    rgba(255, 100, 124, 0.07);
+
+  border-color:
+    rgba(255, 100, 124, 0.22);
+
+  box-shadow:
+    0 0 30px rgba(255, 100, 124, 0.08);
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.oauth-content h1 {
+  margin: 0 0 0.75rem;
+
+  color: var(--text-primary);
+
+  font-size: 1.5rem;
+  font-weight: 650;
+
+  letter-spacing: -0.02em;
+}
+
+.oauth-content p {
+  margin: 0;
+
+  color: var(--text-secondary);
+
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.oauth-secondary-text {
+  margin-top: 0.75rem !important;
+
+  color: var(--text-muted) !important;
+
+  font-size: 0.85rem !important;
+}
+
+
+/* =========================================================
+   OPTIONAL BLUE ACCENT
+   ========================================================= */
+
+.oauth-card::before {
+  content: "";
+
+  display: block;
+
+  width: 45px;
+  height: 3px;
+
+  margin: -2.5rem auto 2rem;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--brand-blue-dark),
+      var(--brand-blue)
+    );
+
+  box-shadow:
+    0 0 12px rgba(0, 178, 248, 0.35);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .oauth-page {
+    padding: 1.25rem;
+  }
+
+  .oauth-logo img {
+    width: 90px;
+    height: 90px;
+  }
+
+  .oauth-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .oauth-content h1 {
+    font-size: 1.35rem;
+  }
+}

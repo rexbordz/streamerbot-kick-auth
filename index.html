@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <title>Authenticate Kick API</title>
+
+  <!-- Required: default theme + autoloader -->
+  <link rel="stylesheet" href="https://ka-f.webawesome.com/webawesome@3.11.0/styles/themes/default.css">
+  <script type="module" src="https://ka-f.webawesome.com/webawesome@3.11.0/webawesome.loader.js"></script>
+
+  <!-- Recommended: utility classes ("CSS Utilities") -->
+  <link rel="stylesheet" href="https://ka-f.webawesome.com/webawesome@3.11.0/styles/utilities.css">
+
+  <!-- Optional: CSS reset ("Native Styles") -->
+  <link rel="stylesheet" href="https://ka-f.webawesome.com/webawesome@3.11.0/styles/native.css">
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Your Styles -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+
+  <!-- Streamer.bot Client -->
+  <script src="https://cdn.jsdelivr.net/npm/@streamerbot/client/dist/streamerbot-client.min.js"></script>
+</head>
+
+
+<body>
+
+  <main class="oauth-page">
+
+    <div class="oauth-logo">
+      <img
+        src="assets/images/logo.png"
+        alt="Your Logo"
+      />
+    </div>
+
+    <!-- =======================================================
+         PENDING / AUTHORIZING
+         ======================================================= -->
+
+    <section id="state-pending" class="oauth-state">
+
+      <wa-card class="oauth-card">
+
+        <div class="oauth-icon">
+          <wa-spinner
+            style="font-size: 3rem;"
+          ></wa-spinner>
+        </div>
+
+        <div class="oauth-content">
+
+          <h1>Authorizing...</h1>
+
+          <p>
+            Please wait while we connect your account.
+          </p>
+
+        </div>
+
+      </wa-card>
+
+    </section>
+
+
+    <!-- =======================================================
+         SUCCESS
+         ======================================================= -->
+
+    <section
+      id="state-success"
+      class="oauth-state"
+      hidden
+    >
+
+      <wa-card class="oauth-card">
+
+        <div class="oauth-icon oauth-success-icon">
+          <wa-icon
+            name="circle-check"
+            label="Success"
+          ></wa-icon>
+        </div>
+
+        <div class="oauth-content">
+
+          <h1>Authorization successful</h1>
+
+          <p>
+            Your account has been successfully connected.
+          </p>
+
+          <p class="oauth-secondary-text">
+            You can safely close this window.
+          </p>
+
+        </div>
+
+      </wa-card>
+
+    </section>
+
+
+    <!-- =======================================================
+         ERROR
+         ======================================================= -->
+
+    <section
+      id="state-error"
+      class="oauth-state"
+      hidden
+    >
+
+      <wa-card class="oauth-card">
+
+        <div class="oauth-icon oauth-error-icon">
+          <wa-icon
+            name="circle-exclamation"
+            label="Error"
+          ></wa-icon>
+        </div>
+
+        <div class="oauth-content">
+
+          <h1>Authorization failed</h1>
+
+          <p id="error-message">
+            Something went wrong while connecting your account.
+          </p>
+
+          <p class="oauth-secondary-text">
+            You can close this window and try again.
+          </p>
+
+        </div>
+
+      </wa-card>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================================================
+       NOTIFICATIONS
+       ========================================================= -->
+
+  <div class="notifications"></div>
+
+
+  <!-- Your JavaScript -->
+  <script src="script.js"></script>
+
+</body>
+
+</html>
+

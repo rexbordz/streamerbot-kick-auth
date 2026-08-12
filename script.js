@@ -1,0 +1,75 @@
+// Settings configuration
+const urlParams = new URLSearchParams(window.location.search);
+const sbAddress = urlParams.get("address") || "127.0.0.1";
+const sbPort = urlParams.get("port") || "8080";
+const sbPassword = urlParams.get("password"); 
+
+// Global variables
+let streamerbotConnected = false;
+let notifications = document.querySelector('.notifications');
+const actionId = "a4fde1af-7680-403d-9433-4d90685de740";
+const code = urlParams.get("code");
+
+
+// =============================
+// Streamer.bot Setup
+// =============================
+const sbClient = new StreamerbotClient({
+  host: sbAddress,
+  port: sbPort,
+  password: sbPassword,
+
+  onConnect: (data) => {
+    if (!streamerbotConnected){
+      streamerbotConnected = true;
+      console.log(`✅ Streamer.bot connected to ${sbAddress}:${sbPort}`)
+      console.debug(data);   
+    }
+  },
+
+  onDisconnect: () => {
+    if (streamerbotConnected) {
+      streamerbotConnected = false;
+      console.warn("❌ Streamer.bot disconnected");
+    }  
+  }
+});
+
+sbClient.on('General.Custom', (data) => {
+  const payload = data?.data;
+  if (!payload || payload.source !== "kickReauth") return;
+  showState(payload.success ? 'success' : 'error', payload.message);
+});
+
+// =============================
+// MAIN FUNCTIONS
+// =============================
+
+function showState(state, message) {
+  document.getElementById('state-pending').hidden = state !== 'pending';
+  document.getElementById('state-success').hidden = state !== 'success';
+  document.getElementById('state-error').hidden = state !== 'error';
+  if (state === 'error' && message) {
+    document.getElementById('error-message').textContent = message;
+  }
+}
+
+function handleKickRedirect() {
+  if (oauthError) {
+    showState('error', `Kick returned an error: ${oauthError}`);
+    return;
+  }
+  if (!code) return;
+  showState('pending');
+  sbClient.doAction(actionId, { code });
+}
+
+// showState('error');
+// showState('success');
+
+
+
+
+
+
+
