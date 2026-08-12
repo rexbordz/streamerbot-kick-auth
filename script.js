@@ -29,7 +29,9 @@ const sbClient = new StreamerbotClient({
 
     if (!actionFired) {
       actionFired = true;
-      handleKickRedirect();
+      setTimeout(() => {
+        handleKickRedirect();
+      }, 3000); // 1.5s delay before calling
     }
   },
 
